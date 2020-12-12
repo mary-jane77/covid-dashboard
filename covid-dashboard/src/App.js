@@ -1,13 +1,14 @@
+import React from 'react';
 import './App.css';
+import Details from './components/Details';
+
 
 function App() {
-  return (
+
+return (
     <div className="App">
-      <header className="App-header">
-        COVID-19 Dashboard
-      </header>
+      <Details />
     </div>
   );
 }
-
 export default App;
