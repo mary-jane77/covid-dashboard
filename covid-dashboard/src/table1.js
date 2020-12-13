@@ -4,55 +4,77 @@ import './table1.scss'
 export const Table1 = (props) => {
   const [status, setStatusInfo] = useState(0)
   const [period, setPeriodInfo] = useState(0)
+  const [visibleData, setVisibleData] = useState(props.info)
 
-console.log('wefweg', props.info)
+
+  const handleClick = (period, status) => {
+    let data = props.filterData(period, status)
+    setVisibleData(data)
+    if (status === 2) {
+      document.querySelectorAll('.main .num1').forEach(e => e.classList.add('green'))
+      document.querySelectorAll('.main .num2').forEach(e => e.classList.add('green'))
+    } else {
+      document.querySelectorAll('.main .num1').forEach(e => e.classList.remove('green'))
+      document.querySelectorAll('.main .num2').forEach(e => e.classList.remove('green'))
+    }
+  }
+
+  const handleMenuClick = (country) => {
+    props.findCountry(country)
+  }
+
   return (
-    <div className="table1">
-    <footer>
-    <button className="arrow" onClick={() => {
-      if(period===0){
-        setPeriodInfo(1)
-      }else{
-        setPeriodInfo(0)
-      }
-      props.updateData(period, status)
-    }}>
-      <span class="material-icons">
-        arrow_left
+    <div className="table1 main">
+      <footer>
+        <button className="arrow" onClick={() => {
+          if (period === 0) {
+            setPeriodInfo(1)
+          } else {
+            setPeriodInfo(0)
+          }
+          handleClick(period, status)
+        }}>
+          <span class="material-icons">
+            arrow_left
         </span>
-    </button>
-    <div>{props.periodInfo[period]}</div>
-    <button className="arrow" onClick={() => {
-      if(period===1){
-        setPeriodInfo(0)
-      }else{
-        setPeriodInfo(1)
-      }
-      props.updateData(period, status)
-    }}>
-      <span class="material-icons">
-        arrow_right
+        </button>
+        <div>{props.periodInfo[period]}</div>
+        <button className="arrow" onClick={() => {
+          if (period === 1) {
+            setPeriodInfo(0)
+          } else {
+            setPeriodInfo(1)
+          }
+          handleClick(period, status)
+        }}>
+          <span class="material-icons">
+            arrow_right
         </span>
-    </button>
-  </footer>
+        </button>
+      </footer>
       <div className="table1-content-wrapper">
         <header className="h" >
-          <div>{props.info[1][0].textline}</div>
-          <h3 className="num1">{props.info[1][0].global}</h3>
+          <div>{visibleData[1][0].textline}</div>
+          <h3 className="num1">{visibleData[1][0].global}</h3>
           <h5 className="col1">absolute number</h5>
-          <h3 className="num2">{props.info[1][0].global/100000}</h3>
+          <h3 className="num2">{(visibleData[1][0].global / 100000).toFixed(4)}</h3>
           <h5 className="col2">value per 100 th.</h5>
 
         </header>
-        <div className="death-table-content">
-        {console.log(props.info)}
-          {props.info[0].map((el,i) => (
+        <div className="death-table-content"  >
+          {visibleData[0].map((el, i) => (
             <div key={i}>
-              <div className="row">
-
-              <div className="num1"><span >{el.info}</span><span>  {props.info[1][0].rowText}</span></div>
-              <div className="num2"><span>{el.info/100000}</span><span>  {props.info[1][0].rowText}</span></div>
-                <h3 className="country">{el.country}</h3>
+              <div className="row" >
+                <div className="num1"><span >{el.info}</span><span>  {visibleData[1][0].rowText}</span></div>
+                <div className="num2"><span>{(el.info / 100000).toFixed(4)}</span><span>  {visibleData[1][0].rowText}</span></div>
+                <h3 className="country" onClick={(e) => {
+                  e.preventDefault()
+                  console.log(e.target)
+                  console.log(e.target.closest('h3'))
+                  if (!e.target.closest('.row')) return
+                  handleMenuClick(e.target.closest('h3').textContent)
+                  console.log('here', e.target.closest('.country'))
+                }}>{el.country}</h3>
               </div>
               <hr />
             </div>
@@ -63,26 +85,25 @@ console.log('wefweg', props.info)
 
       <footer>
         <button className="arrow" onClick={() => {
-          if(status===0){
+          if (status === 0) {
             setStatusInfo(2)
-
-          }else{
-            setStatusInfo(status-1)
+          } else {
+            setStatusInfo(status - 1)
           }
-          props.updateData( period, status)
+          handleClick(period, status)
         }}>
           <span class="material-icons">
             arrow_left
             </span>
         </button>
-        <div>{props.statusInfo[status]}</div>
+        <div>{visibleData[1][0].textline}</div>
         <button className="arrow" onClick={() => {
-          if(status===2){
+          if (status === 2) {
             setStatusInfo(0)
-          }else{
-            setStatusInfo(status+1)
+          } else {
+            setStatusInfo(status + 1)
           }
-          props.updateData( period, status)
+          handleClick(period, status)
         }}>
           <span class="material-icons">
             arrow_right
@@ -90,8 +111,6 @@ console.log('wefweg', props.info)
         </button>
       </footer>
     </div>
-
-
   );
 }
 

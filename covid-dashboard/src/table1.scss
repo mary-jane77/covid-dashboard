@@ -1,8 +1,8 @@
 .table1 {
   box-sizing: border-box;
   position: absolute;
-  top: 90px;
-  right: 170px;
+  top: 80px;
+  right: 250px;
   font-size: 16px;
   width: 230px;
   height: 350px;
@@ -17,15 +17,14 @@
 
     header {
       display: grid;
+      align-items: center;
       width: 230px;
       height: 40px;
       grid-template: 20px 20px 20px /115px 115px;
       grid-template-areas:
-      "h h"
-      "num1 num2"
-      "col1 col2";
-
-
+        "h h"
+        "num1 num2"
+        "col1 col2";
     }
     div {
       grid-area: h;
@@ -82,66 +81,128 @@
     }
   }
 
+  .num {
+    display: inline;
+    font-size: 1.17em;
+    font-weight: bold;
+  }
+
+  button {
+    background: none;
+    border: none;
+  }
+
   h3,
   h1,
   h5 {
     margin: 0;
   }
 
-  br {
-    height: 3px;
-    color: #bdbdbd;
-    border: none;
+  .row {
+    box-sizing: border-box;
+    display: grid;
+    height: 41px;
+    width: 210px;
+    grid-template: 20px 20px /115px 115px;
+    grid-template-areas:
+      "num1 num2"
+      "country country";
+    padding: 0 0.375rem;
+    cursor: pointer;
+    grid-gap: 1px;
+
+    .country {
+      grid-area: country;
+      width: 200px;
+    }
+    .num1 {
+      grid-area: num1;
+      width: 100px;
+    }
+    .num2 {
+      grid-area: num2;
+      width: 100px;
+    }
+
+    .country,
+    .num1,
+    .num2 {
+      overflow: hidden;
+      display: inline-block;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
 }
 
 .clone {
-  right: 0;
-}
+  top: 110px;
+  right: 5px;
+  .table1-content-wrapper {
+    /* position: absolute; */
+    width: 230px;
+    height: 270px;
+    color: #bdbdbd;
+    background-color: #404040;
 
-.row {
-  display: grid;
-  grid-template: 20px 20px /105px 105px;
-  grid-template-areas:
-  "num1 num2"
-  "country country";
-  padding: 0 0.375rem;
-  cursor: pointer;
-  grid-gap: 1px;
+    header {
+      grid-template: 20px 20px 20px /115px 115px;
+      grid-template-areas:
+        "h h"
+        "h h"
+        "col1 col2";
+      align-items: center;
+    }
+    .second-table-content {
+      position: absolute;
+      top: 60px;
+      height: 210px;
+      width: 230px;
+      text-align: start;
+      overflow: auto;
+      // align-items: flex-start;
+    }
+  }
 
-  .country {
-    grid-area: country;
-    width: 200px;
+  .second-table-content {
+    top: 0px;
+    height: 205px;
+  }
+  h2 {
+    grid-area: h;
+    margin: 10px auto;
+    text-align: center;
+    width: 220px;
     overflow: hidden;
     display: inline-block;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  .num1 {
-    grid-area: num1;
-    width: 100px;
-    overflow: hidden;
-    display: inline-block;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .num2 {
-    grid-area: num2;
-    width: 100px;
-    overflow: hidden;
-    display: inline-block;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+
+  .row {
+    display: grid;
+    grid-template: 20px 20px /115px 115px;
+    grid-template-areas:
+      "num1 num2"
+      "country country";
+    padding: 0 0.375rem;
+    cursor: pointer;
+    grid-gap: 1px;
   }
 }
 
-.num {
-  display: inline;
-  font-size: 1.17em;
-  font-weight: bold;
+::-webkit-scrollbar {
+  width: 6px;
 }
 
-button {
-  background: none;
-  border: none;
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px #bdbdbdde;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px #bdbdbd;
+}
+
+.green {
+  color: rgb(75, 148, 20);
 }
