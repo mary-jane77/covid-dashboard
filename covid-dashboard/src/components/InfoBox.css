@@ -1,0 +1,52 @@
+.infoBox {
+  flex: 1;
+}
+
+.infoBox:not(:last-child) {
+  margin-right: 10px;
+}
+
+.infoBox--selected {
+  border-top: 10px solid greenyellow;
+}
+
+.infoBox--red {
+  border-color: red;
+}
+
+.infoBox__cases--green {
+  color: lightgreen !important;
+}
+
+.infoBox__cases {
+  color: #cc1034;
+  font-weight: 600;
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.infoBox__total {
+  color: red;
+  font-weight: 700 !important;
+  font-size: 0.8rem !important;
+  margin-top: 15px !important;
+}
+
+.infoBox_title{
+color: #BDBDBD;
+}
+
+.MuiTypography-body1{
+font-size: 25px !important;
+
+}
+
+.MuiCardContent-root{
+background-color: #222222;
+
+}
+
+.MuiTypography-colorTextSecondary{
+  color: #E60000 !important;
+  font-size: 60px !important;
+}
