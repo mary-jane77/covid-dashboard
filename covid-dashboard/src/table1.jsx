@@ -33,7 +33,7 @@ const Table1 = (props) => {
           }
           handleClick(period, status);
         }}>
-          <span class="material-icons">
+          <span className="arr-icon material-icons">
             arrow_left
         </span>
         </button>
@@ -46,7 +46,7 @@ const Table1 = (props) => {
           }
           handleClick(period, status);
         }}>
-          <span class="material-icons">
+          <span className="arr-icon material-icons">
             arrow_right
         </span>
         </button>
@@ -66,7 +66,7 @@ const Table1 = (props) => {
               <div className="row" >
                 <div className="num1"><span >{el.info}</span><span>  {visibleData[1][0].rowText}</span></div>
                 <div className="num2"><span>{(el.info / 100000).toFixed(4)}</span><span>  {visibleData[1][0].rowText}</span></div>
-                <h3 className="country" onClick={(e) => {
+                <h3 className="country btn" onClick={(e) => {
                   e.preventDefault();
                   if (!e.target.closest('.row')) return;
                   handleMenuClick(e.target.closest('h3').textContent);
@@ -87,7 +87,7 @@ const Table1 = (props) => {
           }
           handleClick(period, status);
         }}>
-          <span class="material-icons">
+          <span className=" arr-icon material-icons">
             arrow_left
             </span>
         </button>
@@ -100,7 +100,7 @@ const Table1 = (props) => {
           }
           handleClick(period, status);
         }}>
-          <span class="material-icons">
+          <span className="arr-icon material-icons">
             arrow_right
             </span>
         </button>
