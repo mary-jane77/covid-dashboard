@@ -1,5 +1,5 @@
 import React from 'react';
-import InfoBox from './InfoBox';
+import InfoBox from './InfoBox.jsx';
 /** @function Summary  */
 
 function Summary(props) {

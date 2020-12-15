@@ -9,7 +9,7 @@ body {
 .App {
   /* display: flex;
   justify-content: space-evenly; */
-  background-color:#000000;
+  background-color:white;
   padding: 20px;
 }
 
@@ -26,8 +26,8 @@ body {
 }
 
 .app__stats {
-  /* display: flex; */
-  /* justify-content: space-between; */
+  display: flex;
+  justify-content: space-between; 
   margin-right: 1500px;
 }
 

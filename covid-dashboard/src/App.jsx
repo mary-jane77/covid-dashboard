@@ -4,7 +4,9 @@ import numeral from 'numeral';
 // import ArraySort from 'array-sort';
 import { Card, CardContent } from '@material-ui/core';
 import axios from './axios';
-import Summary from './components/Summary';
+import Summary from './components/Summary.jsx';
+import Map from './components/Map';
+import 'leaflet/dist/leaflet.css';
 
 function App() {
   const [totalConfirmed, setTotalConfirmed] = React.useState(0);
@@ -50,7 +52,6 @@ function App() {
      covidSummary={covidSummary}
      country={''}
 /></div>
-
 <Card className="app__right">
       <CardContent>
 <div className='table'>
@@ -67,6 +68,8 @@ function App() {
 </div>
         </CardContent>
       </Card>
+<Map
+           />
  </div>
   );
 }
