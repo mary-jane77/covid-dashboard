@@ -1,5 +1,24 @@
-* {
-    /* margin: 0; */
+.App {
+  display: grid;
+  grid-template-columns: repeat(2, auto) 240px 240px;
+  grid-template-rows: 10% repeat(2, auto);
+  grid-template-areas:
+  "h h h h"
+  "total t3 t1 t1p2"
+  "t2 t3 t4 t4";
+  column-gap: 5px;
+  row-gap: 5px;
+  text-align: center;
+  background-color: #282c34;
+  min-height: 100vh;
+  place-items: center;
+}
+
+.main-table-p1 {
+  grid-area: t1;
+}
+.clone {
+  grid-area: t1p2;
 }
 
 body {

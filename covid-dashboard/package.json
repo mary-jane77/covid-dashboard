@@ -8,8 +8,10 @@
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.5.0",
     "array-sort": "^1.0.0",
-    "axios": "^0.21.0",
     "numeral": "^2.0.6",
+    "axios": "^0.21.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "node-sass": "^4.14.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-native-infobox": "^0.1.6",
@@ -25,6 +27,7 @@
   },
   "eslintConfig": {
     "extends": [
+      "airbnb-base",
       "react-app",
       "react-app/jest"
     ]
