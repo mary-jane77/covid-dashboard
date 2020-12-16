@@ -37,16 +37,18 @@ color: #BDBDBD;
 }
 
 .MuiTypography-body1{
-font-size: 25px !important;
+ font-size: 25px !important;
+ line-height: 0.7 !important;
 
 }
 
 .MuiCardContent-root{
-background-color: #222222;
-
+  background-color:  #404040;
+  width: 300px;
+  padding:10px;
 }
 
 .MuiTypography-colorTextSecondary{
   color: #E60000 !important;
-  font-size: 60px !important;
+  font-size: 40px !important;
 }
