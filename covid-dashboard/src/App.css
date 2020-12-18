@@ -3,9 +3,12 @@
   grid-template-columns: repeat(2, auto) 240px 240px;
   grid-template-rows: 10% repeat(2, auto);
   grid-template-areas:
-  "h h h h"
+  /* "h h h h"
   "total t3 t1 t1p2"
-  "t2 t3 t4 t4";
+  "t2 t3 t4 t4"; */
+    "h h h h"
+    "t2 t3 t1 t1p2"
+    "t2 t3 t4 t4";
   column-gap: 5px;
   row-gap: 5px;
   text-align: center;
@@ -30,10 +33,11 @@ body {
   padding: 20px;
 }
 
-.app__header {
+.App-header {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+   margin-top: 22px;
+  /* margin-bottom: 20px; */
   justify-content: space-between;
 }
 
@@ -42,56 +46,6 @@ body {
   font-size: 2rem;
 }
 
-.app__stats {
-    position: absolute;
-    padding-top: 87px;
-    color: #bdbdbd;
-    height: 30px;
-
-}
-
-.block_global{
-text-align: center;
-margin-top:80px;
-}
-
-.table {
-  margin-top: 20px;
-  overflow: scroll;
-  color: #404040;
-  background-color: #404040;
-  height: 500px;
-}
-.app__right{
-  position: absolute;
-  box-sizing: border-box;
-  margin-top: 323px;
-   }
-
-.table > h3{
-font-size: 14px;
-text-align: center;
-color:#BDBDBD;
-}
-.table tr {
-  display: flex;
-  justify-content: space-between;
-}
-
-.table td {
-  padding: 0.5rem;
-  border: none;
- color:#BDBDBD;
-}
-
-strong{
-color:#E60000;
-}
-
-.block_global > h4{
-color: #BDBDBD;
-font-size: 18px;
-}
 @media (max-width: 990px) {
   .app {
     flex-direction: column;

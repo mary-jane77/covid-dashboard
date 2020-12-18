@@ -1,11 +1,11 @@
 import './App.css';
-import { Card, CardContent } from '@material-ui/core';
+import './Css/App.scss';
 import React, { useState } from 'react';
 import Table1 from './table1.jsx';
 import Table1p2 from './table1p2.jsx';
 import useFetch from './getInfo.jsx';
 import Summary from './components/Summary.jsx';
-import Country from './components/Country.jsx';
+import 'leaflet/dist/leaflet.css';
 
 import {
   filterInfo,
@@ -38,17 +38,9 @@ function App() {
       />}
       {info && <Table1p2 info={findCountryInfo(info, countryData)} />}
 
-     <div className="app__stats"><Summary
-        />
-</div>
+      <Summary />
 
-<Card className="app__right">
-      <CardContent>
-            <Country />
-        </CardContent>
-      </Card>
     </div>
   );
 }
-
 export default App;
