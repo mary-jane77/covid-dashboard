@@ -1,10 +1,20 @@
 .map {
-  height: 500px;
-  background-color: white;
+  height: 800px;
+  background-color:  #222222;
   padding: 1rem;
   border-radius: 20px;
-  margin-top: 16px;
+  margin-top: 55px;
+  margin-right: 320px;
   box-shadow: 0 0 8px -4px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+ /* .map {
+     width: 100vw;
+    height: 100vh;
+} */
+
+.cards_map{
+margin-left: 250px;
 }
 
 .map .leaflet-container {
