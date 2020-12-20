@@ -1,9 +1,9 @@
 .map {
   height: 800px;
   background-color:  #222222;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 20px;
-  margin-top: 55px;
+  margin-top: 42px;
   margin-right: 320px;
   box-shadow: 0 0 8px -4px rgba(0, 0, 0, 0.5);
   z-index: 10;
@@ -14,7 +14,7 @@
 } */
 
 .cards_map{
-margin-left: 250px;
+margin-left: 230px;
 }
 
 .map .leaflet-container {

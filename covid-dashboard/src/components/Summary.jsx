@@ -1,34 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import axios from '../axios';
+import React from 'react';
 
-const totalKeyArray = ['confirmed'];
+const totalKeyArray = ['confirmed', 'recovered', 'deaths'];
 
-function Summary() {
-  const [locationArray, setLocationArray] = useState([]);
-  const [loading, setLoading] = useState(false);
+function Summary(props) {
+  const {
+    locationArray,
+    selectedLocation,
+    onSelectItem,
+    onDeselectItem,
+  } = props;
 
-  function sortedLocationArray(locations) {
-    // eslint-disable-next-line max-len
-    return [...locations].sort((location1, location2) => location2.latest.confirmed - location1.latest.confirmed);
-  }
-  useEffect(() => {
-    setLoading(true);
-    axios.get('/v2/locations').then((res) => {
-      const sortedLocations = sortedLocationArray(res.data.locations);
-      setLoading(false);
-
-      if (res.status === 200) {
-        setLocationArray(sortedLocations);
-      }
-    })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-  // console.log(locationArray);
-
-  if (loading) {
-    return <p> Fetching!!! </p>;
+  function onClickItem(id) {
+    if (selectedLocation === null) onSelectItem(id);
+    else if (selectedLocation.id !== id) onSelectItem(id);
+    else onDeselectItem();
   }
 
   const totalElements = totalKeyArray.map((key) => {
@@ -59,9 +44,16 @@ function Summary() {
       title = `${province}, ${country}`;
     }
 
+    let locationClass = 'list-view-location';
+    if (selectedLocation !== null) {
+      if (location.id === selectedLocation.id) {
+        locationClass += ' selected';
+      }
+    }
+
     return (
             // eslint-disable-next-line camelcase
-            <div key={`${id}-${country_code}`} >
+            <div key={`${id}-${country_code}`} className={locationClass} onClick={() => onClickItem(id)}>
                 <div className="columns">
                     <div className="column">
                         <h6 className="title is-7">{title}</h6>

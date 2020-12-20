@@ -1,12 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-undef */
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+// import {
+//   TileLayer, Marker, Popup, MapContainer as LeafletMap,
+// } from 'react-leaflet';
 import {
-  TileLayer, Marker, Popup, MapContainer as LeafletMap,
+  Map, TileLayer, Marker, Popup,
 } from 'react-leaflet';
 import { divIcon } from 'leaflet';
-import axios from '../axios';
-import './Map.css';
 
 const icons = {
   xxSmall: divIcon({ className: 'marker-icon pink', iconSize: [12, 12] }),
@@ -18,35 +19,14 @@ const icons = {
   xxLarge: divIcon({ className: 'marker-icon red', iconSize: [96, 96] }),
 };
 
-function MapView() {
-  const [locationArray, setLocationArray] = useState([]);
-  const [loading, setLoading] = useState(false);
+function MapView(props) {
+  const {
+    locationArray,
+    mapCenter,
+    onSelectMarker,
+  } = props;
 
-  function sortedLocationArray(locations) {
-    // eslint-disable-next-line max-len
-    return [...locations].sort((location1, location2) => location2.latest.confirmed - location1.latest.confirmed);
-  }
-  useEffect(() => {
-    setLoading(true);
-    axios.get('/v2/locations').then((res) => {
-      const sortedLocations = sortedLocationArray(res.data.locations);
-      setLoading(false);
-
-      if (res.status === 200) {
-        setLocationArray(sortedLocations);
-      }
-    })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-  // console.log(locationArray);
-
-  if (loading) {
-    return <p> Fetching!!! </p>;
-  }
-
-  const markerElements = locationArray && locationArray.map((location) => {
+  const markerElements = locationArray.map((location) => {
     const {
       // eslint-disable-next-line camelcase
       id, country_code,
@@ -82,21 +62,23 @@ function MapView() {
                 position={[latitude, longitude]}
                 icon={markerIcon}
                 onclick={() => onSelectMarker(id)} >
-                <Popup>{title}</Popup>
+                <Popup>
+                  {title}
+               </Popup>
             </Marker>
     );
   });
 
   return (
-    <div className='map'>
-<LeafletMap center={[51.505, -0.09]}
-        zoom={6}>
-<TileLayer attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-    {markerElements}
-</LeafletMap>
-    </div>
+      <div className='map'>
+  <Map center={mapCenter}
+          zoom={6}>
+  <TileLayer attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+      {markerElements}
+  </Map>
+      </div>
   );
 }
 export default MapView;
