@@ -1,36 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import axios from '../axios';
+import React from 'react';
 
 const totalKeyArray = ['confirmed'];
 
-function Summary() {
-  const [locationArray, setLocationArray] = useState([]);
-  const [loading, setLoading] = useState(false);
+function Summary(props) {
+  const {
+    locationArray,
+  } = props;
 
-  function sortedLocationArray(locations) {
-    // eslint-disable-next-line max-len
-    return [...locations].sort((location1, location2) => location2.latest.confirmed - location1.latest.confirmed);
-  }
-  useEffect(() => {
-    setLoading(true);
-    axios.get('/v2/locations').then((res) => {
-      const sortedLocations = sortedLocationArray(res.data.locations);
-      setLoading(false);
-
-      if (res.status === 200) {
-        setLocationArray(sortedLocations);
-      }
-    })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-  // console.log(locationArray);
-
-  if (loading) {
-    return <p> Fetching!!! </p>;
-  }
-
+  // eslint-disable-next-line radix
   const totalElements = totalKeyArray.map((key) => {
     // eslint-disable-next-line no-shadow
     const sum = locationArray.reduce((sum, location) => sum + location.latest[key], 0);
@@ -51,6 +28,7 @@ function Summary() {
       // eslint-disable-next-line camelcase
       id, country_code,
       country, province,
+      // eslint-disable-next-line camelcase
       latest: { confirmed },
     } = location;
 
@@ -59,11 +37,20 @@ function Summary() {
       title = `${province}, ${country}`;
     }
 
+    // eslint-disable-next-line camelcase
+    let flag = country_code;
+    // eslint-disable-next-line camelcase
+    if (country_code !== '') {
+      // eslint-disable-next-line camelcase
+      flag = <img src={`https://www.countryflags.io/${country_code}/flat/64.png`} alt={country_code}></img>;
+    }
+
     return (
-            // eslint-disable-next-line camelcase
+    // eslint-disable-next-line camelcase
             <div key={`${id}-${country_code}`} >
                 <div className="columns">
                     <div className="column">
+                      <p className='flag'>{flag}</p>
                         <h6 className="title is-7">{title}</h6>
                     </div>
                     <div className="column">
@@ -73,7 +60,6 @@ function Summary() {
             </div>
     );
   });
-
   return (
    <div className="list-view">
           <div className="list-view-total">
@@ -81,8 +67,8 @@ function Summary() {
               {totalElements}
           </div>
           <div className="list-view-locations">
-           {locationElements}
-          </div>
+              {locationElements}
+        </div>
       </div>
   );
 }

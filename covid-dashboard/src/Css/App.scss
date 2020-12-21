@@ -1,25 +1,25 @@
-@import './Vars';
-@import '~bulma/bulma.sass';
+// @import './Vars';
+ //@import '~bulma/bulma.sass';
+
 
 // List view
 .list-view {
-    grid-area: t3;
     background-color: #222222;
     display: flex;
     flex-direction: column;
     position: fixed;
     top: 0;
     bottom: 0;
-    // left: 0;
     width: 322px;
     margin-top: 110px;
-    // margin-left: -100px;
-     height: 800px;
+    height: 800px;
+
+     margin-left: 5px;
 }
 
 .list-view-brand, .list-view-total {
     background-color:#222222;
-    border-bottom: 1px solid $grey-lighter;
+    border-bottom: 1px solid white;
     flex-shrink: 0;
     padding: 20px;
     height: 120px;
@@ -27,7 +27,7 @@
 }
 
 .list-view-locations {
-    border-bottom: 1px solid $grey-lighter;
+    border-bottom: 1px solid whitesmoke;
     flex-grow: 1;
     position: relative;
     overflow-y: auto;
@@ -47,7 +47,7 @@
     }
 
     &:not(:last-child) {
-        border-bottom: 1px solid $grey-lighter;
+        border-bottom: 1px solid gray;
     }
 
     &:hover {
@@ -56,17 +56,24 @@
 
     &.selected {
         color: white;
-        background-color: $black-ter;
+        background-color: red;
     }
 
     &.selected .title {
         color: white;
     }
 }
+.columns{
+font-size: 19px;
+
+}
 .has-text-right{
-   font-size: 29px;
+   font-size: 30px;
+   font-weight: bold;
    color:#DD0201;
-   padding-right: 90px;
+   //padding-right: 90px;
+
+    margin-top: -40px;
 }
  .title.is-6{
    opacity: 0;
@@ -74,6 +81,16 @@
  .title.is-7{
    font-size: 18px;
    color:#BDBDBD;
+   padding-top: 7px;
+
+   padding-right: 150px;
+}
+.flag{
+    float: left;
+    width: 40px;
+    padding-left: 6px;
+
+    margin-top: -20px;
 }
  .title.is-4{
   color: #BDBDBD;
@@ -83,5 +100,10 @@
 }
  .country-total{
     font-size: 18px;
+    font-weight: bold;
     color: #DD0201;
+    margin-right: -20px;
+    //padding-top: 7px;
+
+   margin-top: -60px;
 }
