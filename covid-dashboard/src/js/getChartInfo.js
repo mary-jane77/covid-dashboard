@@ -24,7 +24,7 @@ export const getWorldChartInfo = (summary, period, status, numeration) => {
         }
       });
       for (let i = 0; i < MonthArr.length; i += 1) {
-        chartData[i] = (chartData[i] / MonthArr[i]).toFixed(0);
+        chartData[i] = Math.trunc(chartData[i] / MonthArr[i]);
       }
       break;
     case 1:
@@ -42,7 +42,7 @@ export const getWorldChartInfo = (summary, period, status, numeration) => {
         }
       });
       for (let i = 0; i < MonthArr.length; i += 1) {
-        chartData[i] = (chartData[i] / MonthArr[i]).toFixed(0);
+        chartData[i] = Math.trunc(chartData[i] / MonthArr[i]);
       }
       break;
     case 2:
@@ -61,7 +61,7 @@ export const getWorldChartInfo = (summary, period, status, numeration) => {
         }
       });
       for (let i = 0; i < MonthArr.length; i += 1) {
-        chartData[i] = (chartData[i] / MonthArr[i]).toFixed(0);
+        chartData[i] = Math.trunc(chartData[i] / MonthArr[i]);
       }
       break;
     default:
@@ -69,7 +69,7 @@ export const getWorldChartInfo = (summary, period, status, numeration) => {
   }
 
   if (numeration) {
-    chartData = chartData.map((el) => ((el * 100000) / 7827000000).toFixed(2));
+    chartData = chartData.map((el) => Math.trunc((el * 100000) / 7827000000));
   }
 
   const res = {
@@ -143,7 +143,7 @@ export const getCountryChartInfo = (summary, period, status, numeration, populat
         if (daysTotal[i] === 0) {
           chartData[i] = 0;
         } else {
-          chartData[i] = (monthTotal[i] / daysTotal[i]).toFixed(0);
+          chartData[i] = Math.trunc(monthTotal[i] / daysTotal[i]);
         }
       }
       break;
@@ -163,7 +163,7 @@ export const getCountryChartInfo = (summary, period, status, numeration, populat
         if (daysTotal[i] === 0) {
           chartData[i] = 0;
         } else {
-          chartData[i] = (monthTotal[i] / daysTotal[i]).toFixed(0);
+          chartData[i] = Math.trunc(monthTotal[i] / daysTotal[i]);
         }
       }
       break;
@@ -184,7 +184,7 @@ export const getCountryChartInfo = (summary, period, status, numeration, populat
         if (daysTotal[i] === 0) {
           chartData[i] = 0;
         } else {
-          chartData[i] = (monthTotal[i] / daysTotal[i]).toFixed(0);
+          chartData[i] = Math.trunc(monthTotal[i] / daysTotal[i]);
         }
       }
       break;
@@ -192,7 +192,7 @@ export const getCountryChartInfo = (summary, period, status, numeration, populat
       break;
   }
   if (numeration) {
-    chartData = chartData.map((el) => ((el * 100000) / population).toFixed(2));
+    chartData = chartData.map((el) => Math.trunc((el * 100000) / population));
   }
 
   const res = {

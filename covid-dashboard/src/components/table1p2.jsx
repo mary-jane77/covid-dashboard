@@ -23,7 +23,7 @@ const Table1p2 = (props) => (
           <div className="row">
             <h3 className="country"> New Confirmed</h3>
             <div className="num1"><span >{props.info.NewConfirmed}</span></div>
-            <div className="num2"><span>{((props.info.NewConfirmed * 100000) / props.population).toFixed(2)}</span></div>
+            <div className="num2"><span>{Math.trunc((props.info.NewConfirmed * 100000) / props.population)}</span></div>
           </div>
           <hr />
         </div>
@@ -31,7 +31,7 @@ const Table1p2 = (props) => (
           <div className="row">
             <h3 className="country">Total Confirmed</h3>
             <div className="num1"><span >{props.info.TotalConfirmed}</span></div>
-            <div className="num2"><span>{((props.info.TotalConfirmed * 100000) / props.population).toFixed(2)}</span></div>
+            <div className="num2"><span>{Math.trunc((props.info.TotalConfirmed * 100000) / props.population)}</span></div>
           </div>
           <hr />
         </div>
@@ -39,7 +39,7 @@ const Table1p2 = (props) => (
           <div className="row">
             <h3 className="country">New Deaths</h3>
             <div className="num1"><span >{props.info.NewDeaths}</span></div>
-            <div className="num2"><span>{((props.info.NewDeaths * 100000) / props.population).toFixed(2)}</span></div>
+            <div className="num2"><span>{Math.trunc((props.info.NewDeaths * 100000) / props.population)}</span></div>
           </div>
           <hr />
         </div>
@@ -47,7 +47,7 @@ const Table1p2 = (props) => (
           <div className="row">
             <h3 className="country"> Total Deaths</h3>
             <div className="num1"><span >{props.info.TotalDeaths}</span></div>
-            <div className="num2"><span>{((props.info.TotalDeaths * 100000) / props.population).toFixed(2)}</span></div>
+            <div className="num2"><span>{Math.trunc((props.info.TotalDeaths * 100000) / props.population)}</span></div>
 
           </div>
           <hr />
@@ -56,7 +56,7 @@ const Table1p2 = (props) => (
           <div className="row">
             <h3 className="country "> New Recovered</h3>
             <div className="num1 green"><span >{props.info.NewRecovered}</span></div>
-            <div className="num2 green"><span>{((props.info.NewRecovered * 100000) / props.population).toFixed(2)}</span></div>
+            <div className="num2 green"><span>{Math.trunc((props.info.NewRecovered * 100000) / props.population)}</span></div>
 
           </div>
           <hr />
@@ -65,7 +65,7 @@ const Table1p2 = (props) => (
           <div className="row">
             <h3 className="country "> Total Recovered</h3>
             <div className="num1 green"><span >{props.info.TotalRecovered}</span></div>
-            <div className="num2 green"><span>{((props.info.TotalRecovered * 100000) / props.population).toFixed(2)}</span></div>
+            <div className="num2 green"><span>{Math.trunc((props.info.TotalRecovered * 100000) / props.population)}</span></div>
 
           </div>
           <hr />

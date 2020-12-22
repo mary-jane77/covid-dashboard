@@ -58,7 +58,7 @@ const Table1 = (props) => {
           <div>{props.info[1][0].textline}</div>
           <h3 className="num1">{props.info[1][0].global}</h3>
           <h5 className="col1">absolute number</h5>
-          <h3 className="num2">{((props.info[1][0].global * 100000) / 7827000000).toFixed(2)}</h3>
+          <h3 className="num2">{Math.trunc((props.info[1][0].global * 100000) / 7827000000)}</h3>
           <h5 className="col2">per 100 th.</h5>
 
         </header>
@@ -67,7 +67,7 @@ const Table1 = (props) => {
             <div key={i}>
               <div className="row" >
                 <div className="num1"><span >{el.info}</span><span>  {props.info[1][0].rowText}</span></div>
-                <div className="num2"><span>{((el.info * 100000) / 7827000000).toFixed(2)}</span><span>  {props.info[1][0].rowText}</span></div>
+                <div className="num2"><span>{Math.trunc((el.info * 100000) / 7827000000)}</span><span>  {props.info[1][0].rowText}</span></div>
                 <h3 className="country btn" onClick={(e) => {
                   e.preventDefault();
                   if (!e.target.closest('.row')) return;
