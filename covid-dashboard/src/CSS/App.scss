@@ -1,10 +1,11 @@
-@import './Vars';
-@import '~bulma/bulma.sass';
+// @import './Vars';
+// @import '~bulma/bulma.sass';
 
 body {
     font-family: sans-serif;
 }
-//table-country
+
+//App.jsx
 .App {
   display: flex;
   justify-content: space-evenly;
@@ -28,33 +29,6 @@ body {
 .app__left {
   flex: 0.9;
 }
-.table {
-  margin-top: 20px;
-  overflow: scroll;
-  color: #222222;
-  background-color: #222222;
-  height: 500px;
-}
-
-.table > h3{
-font-size: 14px;
-text-align: center;
-color:#BDBDBD;
-}
-.table tr {
-  display: flex;
-  justify-content: space-between;
-}
-
-.table td {
-  padding: 0.5rem;
-  border: none;
- color:#BDBDBD;
-}
-
-strong{
-  color:#E60000;
-}
 
 // List view
 .list-view {
@@ -64,26 +38,24 @@ strong{
     position: fixed;
     top: 0;
     bottom: 0;
-    // left: 0;
     width: 322px;
     margin-top: 110px;
     margin-left: -99px;
     height: 800px;
-    border-radius: 12px;
-    padding: 15px;
+    //border-radius: 12px;
+    //padding: 15px;
 }
 
 .list-view-brand, .list-view-total {
     background-color:#222222;
-    border-bottom: 1px solid $grey-lighter;
+    border-bottom: 1px solid gray;
     flex-shrink: 0;
-    padding: 20px;
     height: 120px;
     border-radius: 50%;
 }
 
 .list-view-locations {
-    border-bottom: 1px solid $grey-lighter;
+    border-bottom: 1px solid grey;
     flex-grow: 1;
     position: relative;
     overflow-y: auto;
@@ -103,32 +75,33 @@ strong{
     }
 
     &:not(:last-child) {
-        border-bottom: 1px solid $grey-lighter;
+        border-bottom: 1px solid grey;
     }
 
     &:hover {
-        background-color: #EEEEEE;
+        background-color: black;
     }
 
     &.selected {
-        color: white;
-        background-color: $black-ter;
+        color: rgb(218, 14, 14);
+        background-color:#E1E5E8;
     }
 
     &.selected .title {
-        color: white;
+        color: red;
     }
 }
 .has-text-right{
-   font-size: 29px;
+   font-size: 30px;
+   font-weight: bold;
    color:#DD0201;
-   padding-right: 90px;
+   text-align: center;
+   margin-top: -29px;
 }
  .title.is-6{
    opacity: 0;
 }
  .title.is-7{
-   font-size: 18px;
    color:#BDBDBD;
 }
  .title.is-4{
@@ -137,9 +110,22 @@ strong{
   text-align: center;
   line-height: 10px;
 }
- .country-total{
-    font-size: 18px;
-    color: #DD0201;
+
+.table {
+  color: #DD0201;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.table tr {
+  display: flex;
+  justify-content: space-between;
+  align-items: center
+}
+
+.table td {
+  padding: 0.5rem;
+  border: none;
 }
 
 //marker-map
@@ -167,10 +153,7 @@ strong{
 // Details view
 .details-view {
     background-color: white;
-    //border-top: 10px solid $black-ter;
     box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.15);
-    // width: 200px;
-    // height: 200px;
     margin-bottom: 480px;
     border-radius: 12px;
     padding: 17px;
@@ -200,4 +183,29 @@ strong{
  .title-details{
   font-size: 18px;
 }
-
+.details-view-content{
+    width: 200px;
+    height: 120px;
+}
+.table2{
+  color:#222222;
+  font-size: 25px;
+}
+.tr_table{
+  display: flex;
+  justify-content: space-between;
+  align-items: center
+}
+.td_col{
+  margin-top: -30px;
+  line-height: 0px;
+}
+.td_count{
+ font-size: 20px;
+ font-weight: bold;
+ color:#DD0201 ;
+}
+.title_details{
+ color:#BDBDBD;
+ margin-top: -10px;
+}

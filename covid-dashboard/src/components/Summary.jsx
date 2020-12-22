@@ -5,6 +5,7 @@ const totalKeyArray = ['confirmed', 'recovered', 'deaths'];
 function Summary(props) {
   const {
     locationArray,
+    loading,
     selectedLocation,
     onSelectItem,
     onDeselectItem,
@@ -33,8 +34,7 @@ function Summary(props) {
 
   const locationElements = locationArray.map((location) => {
     const {
-      // eslint-disable-next-line camelcase
-      id, country_code,
+      id, country_code: countryCode,
       country, province,
       latest: { confirmed },
     } = location;
@@ -50,17 +50,19 @@ function Summary(props) {
         locationClass += ' selected';
       }
     }
+    let flag = countryCode;
+    if (countryCode !== '') {
+      flag = <img src={`https://www.countryflags.io/${countryCode}/flat/64.png`} alt='img' onError={(e) => { e.target.onerror = null; e.target.src = 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/62/62db5f0a37fc0581a7e2b441098220b89b2379f4_medium.jpg'; }}></img>;
+    }
 
     return (
-            // eslint-disable-next-line camelcase
-            <div key={`${id}-${country_code}`} className={locationClass} onClick={() => onClickItem(id)}>
-                <div className="columns">
-                    <div className="column">
-                        <h6 className="title is-7">{title}</h6>
-                    </div>
-                    <div className="column">
-                        <p className="country-total">{confirmed}</p>
-                    </div>
+            <div key={`${id}-${countryCode}`} className={locationClass} onClick={() => onClickItem(id)}>
+                 <div className="table">
+                    <tr>
+                      <td>{flag}</td>
+                        <td className="title is-7">{title}</td>
+                        <td>{confirmed}</td>
+                    </tr>
                 </div>
             </div>
     );
@@ -68,6 +70,11 @@ function Summary(props) {
 
   return (
    <div className="list-view">
+{
+     loading
+       ? <p className='fetch-message'>Fetching!</p>
+       : (
+<>
           <div className="list-view-total">
               <h2 className="title is-4">Clobal Cases</h2>
               {totalElements}
@@ -75,6 +82,9 @@ function Summary(props) {
           <div className="list-view-locations">
            {locationElements}
           </div>
+</>
+       )
+}
       </div>
   );
 }

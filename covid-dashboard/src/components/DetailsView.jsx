@@ -16,13 +16,15 @@ function DetailsView(props) {
   const totalElements = totalKeyArray.map((key) => {
     const count = latest[key];
     return (
-            <div key={key} className="columns">
-                <div className="column">
-                    <h6 className="title-details">{key}</h6>
-                </div>
-                <div className="column">
-                    <p className="has-text-right-details">{count}</p>
-                </div>
+            <div key={key} className="table2">
+<tr className='tr_table'>
+                <td className="td_col">
+                    <h6 className="tit">{key}</h6>
+                </td>
+                <td className="td_col">
+                 <p className="td_count">{count}</p>
+                </td>
+</tr>
             </div>
     );
   });
@@ -31,11 +33,10 @@ function DetailsView(props) {
         <div className="details-view">
             <div className="details-view-close" onClick={onClickClose}>&times;</div>
             <div className="details-view-content">
-                <h4 className="title is-4">{title}</h4>
+                <h4 className="title_details">{title}</h4>
                 {totalElements}
             </div>
         </div>
   );
 }
-
 export default DetailsView;
