@@ -11,6 +11,7 @@ import {
 import findCountryInfo from './js/findCountryInfo';
 import Chart4 from './components/chart4.jsx';
 import { getWorldChartInfo, getCountryChartInfo, dtimeNums } from './js/getChartInfo';
+import Footer from './components/footer.jsx';
 
 function App() {
   const info = useFetch('https://api.covid19api.com/summary');
@@ -78,6 +79,7 @@ function App() {
         period={period}
         numeration={numeration}
       />}
+      <Footer/>
     </div>
   );
 }

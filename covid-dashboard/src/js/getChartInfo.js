@@ -1,6 +1,6 @@
 export const getWorldChartInfo = (summary, period, status, numeration) => {
   let chartData = [];
-  let color = 'rgba(165, 56, 29, 0.644)';
+  let color = 'rgba(221, 1, 1, 0.650)';
   const statusArr = period ? ['New confirmed', 'New deaths', 'New recovered'] : ['Confirmed', 'Deaths', 'Recovered'];
   const now = new Date();
   const MonthArr = [15, 31, 30, 31, 31, 30, 31, 30, now.getDate()];
@@ -118,7 +118,7 @@ export const getWorldChartInfo = (summary, period, status, numeration) => {
 };
 export const getCountryChartInfo = (summary, period, status, numeration, population) => {
   let chartData = [];
-  let color = 'rgba(165, 56, 29, 0.644)';
+  let color = 'rgba(221, 1, 1, 0.650)';
   const statusArr = ['Confirmed', 'Deaths', 'Recovered'];
   const monthTotal = [];
   const daysTotal = [];

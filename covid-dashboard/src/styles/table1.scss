@@ -1,21 +1,21 @@
+@import './vars';
+
 .table1 {
   box-sizing: border-box;
   position: relative;
-  font-size: 16px;
-  width: 230px;
+  font-size: 14px;
+  width: 200px;
 
   .table1-content-wrapper {
     width: auto;
-    height: 221px;
-    color: #bdbdbd;
-    background-color: #404040;
-
+    height: 200px;
+    color: $text;
+    background-color: $table;
     header {
       display: grid;
       align-items: center;
-      width: 230px;
       height: 40px;
-      grid-template: 20px 20px 20px /115px 115px;
+      grid-template: 20px 20px 20px /100px 100px;
       grid-template-areas:
         "h h"
         "num1 num2"
@@ -40,7 +40,7 @@
     .death-table-content {
       position: absolute;
       top: 90px;
-      height: 160px;
+      height: 140px;
       width: 100%;
       text-align: start;
       overflow: auto;
@@ -49,8 +49,8 @@
 
   footer {
     display: flex;
-    color: rgb(151, 150, 150);
-    background-color: #404040;
+    color: $text;
+    background-color: $table;
     margin: 0 auto;
     width: 160px;
     bottom: 0px;
@@ -81,11 +81,11 @@
   }
 
   .row {
+    overflow: hidden;
     box-sizing: border-box;
     display: grid;
     height: 41px;
-    width: 210px;
-    grid-template: 20px 20px /115px 115px;
+    grid-template: 20px 20px /100px 100px;
     grid-template-areas:
       "num1 num2"
       "country country";
@@ -117,7 +117,7 @@
     }
 
     .country.btn:hover {
-     color: #858080;
+      color: #858080;
     }
   }
   .zoom-btn1 {
@@ -126,15 +126,12 @@
 }
 
 .clone {
-  // padding-top: 27px;
   .table1-content-wrapper {
-    width: 230px;
-    height: 221px;
-    color: #bdbdbd;
-    background-color: #404040;
+    color: $text;
+    background-color: $table;
 
     header {
-      grid-template: 20px 20px 20px /115px 115px;
+      grid-template: 20px 20px 20px /100px 100px;
       grid-template-areas:
         "h h"
         "h h"
@@ -144,10 +141,10 @@
     .second-table-content {
       position: absolute;
       top: 60px;
-      height: 160px;
-      width: 230px;
+      height: 140px;
+      width: 200px;
       text-align: start;
-      overflow: auto;
+      overflow-y: auto;
     }
   }
 
@@ -168,24 +165,21 @@
 
   .row {
     display: grid;
-    grid-template: 20px 20px /115px 115px;
+    grid-template: 20px 20px /100px 100px;
     grid-template-areas:
       "num1 num2"
       "country country";
     padding: 0 0.375rem;
     grid-gap: 1px;
   }
-
-
-
 }
-.arr-icon{
+.arr-icon {
   transition: all 0.07s ease;
 }
 
 .arr-icon:hover {
-cursor: pointer;
-transform: scale(1.7);
+  cursor: pointer;
+  transform: scale(1.7);
 }
 
 ::-webkit-scrollbar {
@@ -197,7 +191,7 @@ transform: scale(1.7);
 }
 
 ::-webkit-scrollbar-thumb {
-  box-shadow: inset 0 0 6px #bdbdbd;
+  box-shadow: inset 0 0 6px $text;
 }
 
 .green {

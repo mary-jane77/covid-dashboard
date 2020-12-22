@@ -39,10 +39,10 @@ const Chart4 = (props) => {
       </footer>
       <h3>{props.country}</h3>
       <div className="chart-content" style={{
-        width: 300,
-        height: 110,
+        width: 400,
+        height: 100,
         margin: 0,
-        backgroundColor: ('#404040'),
+        backgroundColor: ('#222222'),
       }}>
         {<Line options={props.info.options}
           data={props.info.data} />}

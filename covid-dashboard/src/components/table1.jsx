@@ -59,7 +59,7 @@ const Table1 = (props) => {
           <h3 className="num1">{props.info[1][0].global}</h3>
           <h5 className="col1">absolute number</h5>
           <h3 className="num2">{((props.info[1][0].global * 100000) / 7827000000).toFixed(2)}</h3>
-          <h5 className="col2">value per 100 th.</h5>
+          <h5 className="col2">per 100 th.</h5>
 
         </header>
         <div className="death-table-content">

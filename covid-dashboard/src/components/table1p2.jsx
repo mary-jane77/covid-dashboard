@@ -16,7 +16,7 @@ const Table1p2 = (props) => (
       <header >
         <h2>{props.info.country}</h2>
         <h5 className="col1">absolute number</h5>
-        <h5 className="col2">value per 100 th.</h5>
+        <h5 className="col2">per 100 th.</h5>
       </header>
       <div className="second-table-content">
         <div >
