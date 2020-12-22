@@ -1,0 +1,44 @@
+.chart {
+  background-color: #404040;
+  color: rgb(151, 150, 150);
+  position: relative;
+  font-size: 16px;
+  height: 220px;
+
+  h3 {
+    margin: 0;
+  }
+  
+  footer {
+    display: flex;
+    color: rgb(151, 150, 150);
+    background-color: #404040;
+    margin: 0px auto;
+    width: 100%;
+    bottom: 20px;
+
+    button:focus,
+    button:active {
+      background: none;
+      outline: none;
+    }
+
+    span {
+      transform: scale(1.4);
+    }
+
+    div {
+      width: 100%;
+      overflow: hidden;
+      display: inline-block;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      transition: all 0.7s ease;
+    }
+
+    button {
+      background: none;
+      border: none;
+    }
+  }
+}

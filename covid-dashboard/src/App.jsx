@@ -1,37 +1,83 @@
-import './App.css';
+import './App.scss';
 import React, { useState } from 'react';
-import Table1 from './table1.jsx';
-import Table1p2 from './table1p2.jsx';
-import useFetch from './getInfo.jsx';
+import Table1 from './components/table1.jsx';
+import Table1p2 from './components/table1p2.jsx';
+import useFetch from './components/getInfo.jsx';
 import {
   filterInfo,
   periodInfo,
   statusInfo,
-} from './table1Info';
-import findCountryInfo from './findCountryInfo';
+} from './js/table1Info';
+import findCountryInfo from './js/findCountryInfo';
+import Chart4 from './components/chart4.jsx';
+import { getWorldChartInfo, getCountryChartInfo, dtimeNums } from './js/getChartInfo';
 
 function App() {
   const info = useFetch('https://api.covid19api.com/summary');
+  const [status, setStatusInfo] = useState(0);
+  const [period, setPeriodInfo] = useState(0);
+  const [numeration, setNumeration] = useState(0);
   const [countryData, setCountry] = useState('Belarus');
+  const [chartCountry, setChartCountry] = useState('World');
+  const [displayingCountryData, setdisplayingCountryData] = useState(false);
+  const OneCountryChartInfo = useFetch(`https://api.covid19api.com/dayone/country/${countryData}`);
+  const WorldChartInfo = useFetch(`https://api.covid19api.com/world?from=2020-03-01T00:00:00Z&to=${dtimeNums(-1)}T00:00:00Z`);
+  const population = useFetch(`https://restcountries.eu/rest/v2/name/${countryData}`);
 
-  const filterData = (period, status) => filterInfo(info, period, status);
-  const findCountry = (country) => {
-    setCountry(country);
+  const changeConditionfromTable = (p, s) => {
+    setPeriodInfo(p);
+    setStatusInfo(s);
+  };
+  const changeCondition = (p, s, n) => {
+    setPeriodInfo(p);
+    setStatusInfo(s);
+    setNumeration(n);
   };
 
+  const filterChartData = () => {
+    if (displayingCountryData) {
+      return getCountryChartInfo(OneCountryChartInfo,
+        period,
+        status,
+        numeration,
+        population[0].population);
+    }
+    return getWorldChartInfo(WorldChartInfo, period, status, numeration);
+  };
+  const filterData = () => filterInfo(info, period, status);
+  const findCountry = (country) => {
+    setCountry(country);
+    setChartCountry(country);
+    setdisplayingCountryData(true);
+  };
   return (
     <div className="App">
       <header className="App-header">
         COVID-19 Dashboard
       </header>
-      {info && <Table1
+      {(info && WorldChartInfo) && <Table1
+        changeCondition={changeConditionfromTable}
         filterData={filterData}
-        info={filterInfo(info, 0, 0)}
+        filterChartData={filterChartData(periodInfo)}
+        info={filterData()}
         periodInfo={periodInfo}
         findCountry={findCountry}
         statusInfo={statusInfo}
+        status={status}
+        period={period}
       />}
-      {info && <Table1p2 info={findCountryInfo(info, countryData)} />}
+      {(info && population) && <Table1p2 info={findCountryInfo(info, countryData)}
+        population={population[0].population} />}
+      {(info && WorldChartInfo) && <Chart4
+        changeCondition={changeCondition}
+        info={filterChartData()}
+        country={chartCountry}
+        statusInfo={statusInfo}
+        periodInfo={periodInfo}
+        status={status}
+        period={period}
+        numeration={numeration}
+      />}
     </div>
   );
 }
