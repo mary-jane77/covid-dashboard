@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import React, { useState, useEffect } from 'react';
 import './Css/App.scss';
 import './App.css';
@@ -46,10 +47,6 @@ function App() {
   }, []);
   // console.log(locationArray);
 
-  if (loading) {
-    return <p> Fetching!!! </p>;
-  }
-
   return (
     <div className="App">
       <header className="App-header">
@@ -65,7 +62,8 @@ function App() {
       {info && <Table1p2 info={findCountryInfo(info, countryData)} />}
 
       <Summary
-     locationArray={locationArray} />
+     locationArray={locationArray}
+     loading={loading} />
 
     </div>
   );

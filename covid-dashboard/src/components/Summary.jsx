@@ -1,13 +1,13 @@
+/* eslint-disable linebreak-style */
 import React from 'react';
 
 const totalKeyArray = ['confirmed'];
-
 function Summary(props) {
   const {
     locationArray,
+    loading,
   } = props;
 
-  // eslint-disable-next-line radix
   const totalElements = totalKeyArray.map((key) => {
     // eslint-disable-next-line no-shadow
     const sum = locationArray.reduce((sum, location) => sum + location.latest[key], 0);
@@ -22,53 +22,51 @@ function Summary(props) {
             </div>
     );
   });
-
   const locationElements = locationArray.map((location) => {
     const {
-      // eslint-disable-next-line camelcase
-      id, country_code,
+      id, country_code: countryCode,
       country, province,
-      // eslint-disable-next-line camelcase
       latest: { confirmed },
     } = location;
-
     let title = country;
     if (province !== '' && province !== country) {
       title = `${province}, ${country}`;
     }
-
-    // eslint-disable-next-line camelcase
-    let flag = country_code;
-    // eslint-disable-next-line camelcase
-    if (country_code !== '') {
-      // eslint-disable-next-line camelcase
-      flag = <img src={`https://www.countryflags.io/${country_code}/flat/64.png`} alt={country_code}></img>;
+    let flag = countryCode;
+    if (countryCode !== '') {
+      flag = <img src={`https://www.countryflags.io/${countryCode}/flat/64.png`} alt='img' onError={(e) => { e.target.onerror = null; e.target.src = 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/62/62db5f0a37fc0581a7e2b441098220b89b2379f4_medium.jpg'; }}></img>;
     }
 
     return (
-    // eslint-disable-next-line camelcase
-            <div key={`${id}-${country_code}`} >
-                <div className="columns">
-                    <div className="column">
-                      <p className='flag'>{flag}</p>
-                        <h6 className="title is-7">{title}</h6>
-                    </div>
-                    <div className="column">
-                        <p className="country-total">{confirmed}</p>
-                    </div>
+            <div key={`${id}-${countryCode}`}>
+                <div className="table">
+                    <tr>
+                      <td>{flag}</td>
+                        <td className="title is-7">{title}</td>
+                        <td>{confirmed}</td>
+                    </tr>
                 </div>
             </div>
     );
   });
+
   return (
    <div className="list-view">
-          <div className="list-view-total">
-              <h2 className="title is-4">Clobal Cases</h2>
+{
+     loading
+       ? <p className='fetch-message'>Fetching!</p>
+       : (
+<>
+<div className="list-view-total">
+        <h2 className="title is-4">Clobal Cases</h2>
               {totalElements}
           </div>
           <div className="list-view-locations">
               {locationElements}
         </div>
+</>
+       )
+}
       </div>
   );
 }

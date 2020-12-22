@@ -63,10 +63,7 @@
         color: white;
     }
 }
-.columns{
-font-size: 19px;
 
-}
 .has-text-right{
    font-size: 30px;
    font-weight: bold;
@@ -79,31 +76,29 @@ font-size: 19px;
    opacity: 0;
 }
  .title.is-7{
-   font-size: 18px;
    color:#BDBDBD;
-   padding-top: 7px;
+ }
 
-   padding-right: 150px;
-}
-.flag{
-    float: left;
-    width: 40px;
-    padding-left: 6px;
-
-    margin-top: -20px;
-}
  .title.is-4{
   color: #BDBDBD;
   font-size: 25px;
   text-align: center;
   line-height: 10px;
 }
- .country-total{
-    font-size: 18px;
-    font-weight: bold;
-    color: #DD0201;
-    margin-right: -20px;
-    //padding-top: 7px;
 
-   margin-top: -60px;
+.table {
+  color: #DD0201;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.table tr {
+  display: flex;
+  justify-content: space-between;
+  align-items: center
+}
+
+.table td {
+  padding: 0.5rem;
+  border: none;
 }
