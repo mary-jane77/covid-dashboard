@@ -1,3 +1,4 @@
+
 .App {
   display: grid;
   grid-template-columns: repeat(2, auto) 240px 240px;
@@ -9,7 +10,7 @@
   column-gap: 5px;
   row-gap: 5px;
   text-align: center;
-  background-color: #282c34;
+  background-color: #000000;
   min-height: 100vh;
   place-items: center;
 }
@@ -34,14 +35,14 @@
 
 .App-header {
   position: fixed;
-  background-color: #17191d;
+  background-color: #222222;
   width: 100%;
   min-height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  /* font-size: calc(10px + 2vmin); */
   color: white;
 }
 
@@ -57,3 +58,29 @@
     transform: rotate(360deg);
   }
 }
+/*
+body {
+    font-family: sans-serif;
+}
+
+.App {
+  background-color:#000000;
+  padding: 20px;
+}
+
+.App-header {
+   display: flex;
+   align-items: center;
+   margin-top: 22px;
+   margin-bottom: 20px;
+   justify-content: space-between;
+}
+
+.App-header > h1 {
+  color: #BDBDBD;
+  font-size: 1.6rem;
+}
+
+ */
+
+
