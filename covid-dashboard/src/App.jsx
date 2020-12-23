@@ -1,13 +1,19 @@
+import React, { useState, useEffect, useCallback } from 'react';
+import MapView from './components/Map/MapView';
+import 'leaflet/dist/leaflet.css';
+import './Css/List.scss';
+import axios from './axios';
+import Summary from './components/Summary.jsx';
+import DetailsView from './components/Map/DetailsView.jsx';
+import './components/Map.css';
 /* eslint-disable linebreak-style */
-import React, { useState, useEffect } from 'react';
 import './App.scss';
 import Table1 from './components/table1.jsx';
 import Table1p2 from './components/table1p2.jsx';
 import useFetch from './components/getInfo.jsx';
 import './Css/App.scss';
-import './App.css';
-import axios from './axios';
-import Summary from './components/Summary.jsx';
+// import './App.css';
+
 
 import {
   filterInfo,
@@ -20,6 +26,10 @@ import { getWorldChartInfo, getCountryChartInfo, dtimeNums } from './js/getChart
 import Footer from './components/footer.jsx';
 
 function App() {
+  const [locationArray, setLocationArray] = useState([]);
+  const [selectedLocation, setSelectedLocation] = useState(null);
+  const [mapCenter, setMapCenter] = useState([51.505, -0.09]);
+  const [loading, setLoading] = useState(false);
   const info = useFetch('https://api.covid19api.com/summary');
   const [status, setStatusInfo] = useState(0);
   const [period, setPeriodInfo] = useState(0);
@@ -41,6 +51,20 @@ function App() {
     setNumeration(n);
   };
 
+  function sortedLocationArray(locations) {
+    // eslint-disable-next-line max-len
+    return [...locations].sort((location1, location2) => location2.latest.confirmed - location1.latest.confirmed);
+  }
+  const onSelectLocation = useCallback((id) => {
+    const location = locationArray.find((_location) => _location.id === id);
+    if (location === undefined) {
+      setSelectedLocation(null);
+      return;
+    }
+    setSelectedLocation(location);
+    const { coordinates: { latitude, longitude } } = location;
+    setMapCenter([latitude, longitude]);
+  }, [locationArray]);
   const filterChartData = () => {
     if (displayingCountryData) {
       return getCountryChartInfo(OneCountryChartInfo,
@@ -58,6 +82,30 @@ function App() {
     setdisplayingCountryData(true);
   };
 
+  const onDeselectLocation = useCallback(() => {
+    setSelectedLocation(null);
+  }, []);
+
+  useEffect(() => {
+    setLoading(true);
+    axios.get('/v2/locations').then((res) => {
+      const sortedLocations = sortedLocationArray(res.data.locations);
+      setLoading(false);
+
+      if (res.status === 200) {
+        setLocationArray(sortedLocations);
+      }
+    })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+  // console.log(locationArray);
+
+  let detailsView = null;
+  if (selectedLocation != null) {
+    detailsView = <DetailsView location={selectedLocation} onClickClose={onDeselectLocation} />;
+  }
   const [locationArray, setLocationArray] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -82,7 +130,29 @@ function App() {
   // console.log(locationArray);
 
   return (
+
     <div className="App">
+
+    <div className="app__left">
+
+    <div className="app__header">
+    <h1>COVID-19 Dashboard</h1>
+   </div>
+
+          <Summary
+        locationArray={locationArray}
+        loading={loading}
+        selectedLocation={selectedLocation}
+        onSelectItem={onSelectLocation}
+        onDeselectItem={onDeselectLocation}
+          />
+
+    <div className='cards_map'>
+       <MapView
+      locationArray={locationArray}
+      mapCenter={mapCenter}
+      onSelectMarker={onSelectLocation} />
+      {detailsView}
       <header className="App-header">
         <h1>COVID-19 Dashboard</h1>
       </header>
@@ -116,6 +186,10 @@ function App() {
      loading={loading} />
 
     </div>
+
+       </div>
+ </div>
+
   );
 }
 export default App;
