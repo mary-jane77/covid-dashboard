@@ -12,7 +12,6 @@ export const filterInfo = (information, period, status) => {
       const countryInfo = {
         country: el.Country,
         info: el.TotalConfirmed,
-
       };
       filteredInfo.push(countryInfo);
     });

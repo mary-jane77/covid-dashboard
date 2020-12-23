@@ -1,54 +1,35 @@
+/* eslint-disable linebreak-style */
 import React from 'react';
 
-const totalKeyArray = ['confirmed', 'recovered', 'deaths'];
-
+const totalKeyArray = ['confirmed'];
 function Summary(props) {
   const {
     locationArray,
     loading,
-    selectedLocation,
-    onSelectItem,
-    onDeselectItem,
   } = props;
 
-  function onClickItem(id) {
-    if (selectedLocation === null) onSelectItem(id);
-    else if (selectedLocation.id !== id) onSelectItem(id);
-    else onDeselectItem();
-  }
-
   const totalElements = totalKeyArray.map((key) => {
-    // eslint-disable-next-line no-shadow
-    const sum = locationArray.reduce((sum, location) => sum + location.latest[key], 0);
+    const sum = locationArray.reduce((total, location) => total + location.latest[key], 0);
     return (
-            <div key={key} className="columns">
-                <div className="column">
-                    <h6 className="title is-6">{key}</h6>
-                </div>
-                <div className="column">
-                    <p className="is-6 has-text-right">{sum}</p>
-                </div>
-            </div>
+      <div key={key} className="columns">
+        <div className="column">
+          <h6 className="title is-6">{key}</h6>
+        </div>
+        <div className="column">
+          <p className="is-6 has-text-right">{sum}</p>
+        </div>
+      </div>
     );
   });
-
   const locationElements = locationArray.map((location) => {
     const {
       id, country_code: countryCode,
       country, province,
       latest: { confirmed },
     } = location;
-
     let title = country;
     if (province !== '' && province !== country) {
       title = `${province}, ${country}`;
-    }
-
-    let locationClass = 'list-view-location';
-    if (selectedLocation !== null) {
-      if (location.id === selectedLocation.id) {
-        locationClass += ' selected';
-      }
     }
     let flag = countryCode;
     if (countryCode !== '') {
@@ -56,36 +37,36 @@ function Summary(props) {
     }
 
     return (
-            <div key={`${id}-${countryCode}`} className={locationClass} onClick={() => onClickItem(id)}>
-                 <div className="table">
-                    <tr>
-                      <td>{flag}</td>
-                        <td className="title is-7">{title}</td>
-                        <td>{confirmed}</td>
-                    </tr>
-                </div>
-            </div>
+      <div key={`${id}-${countryCode}`}>
+        <div className="table">
+          <tr>
+            <td>{flag}</td>
+            <td className="title is-7">{title}</td>
+            <td>{confirmed}</td>
+          </tr>
+        </div>
+      </div>
     );
   });
 
   return (
-   <div className="list-view">
-{
-     loading
-       ? <p className='fetch-message'>Fetching!</p>
-       : (
-<>
-          <div className="list-view-total">
-              <h2 className="title is-4">Clobal Cases</h2>
-              {totalElements}
-          </div>
-          <div className="list-view-locations">
-           {locationElements}
-          </div>
-</>
-       )
-}
-      </div>
+    <div className="list-view">
+      {
+        loading
+          ? <p className='fetch-message'>Fetching!</p>
+          : (
+            <>
+              <div className="list-view-total">
+                <h2 className="title is-4">Clobal Cases</h2>
+                {totalElements}
+              </div>
+              <div className="list-view-locations">
+                {locationElements}
+              </div>
+            </>
+          )
+      }
+    </div>
   );
 }
 
