@@ -1,9 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-undef */
 import React from 'react';
-// import {
-//   TileLayer, Marker, Popup, MapContainer as LeafletMap,
-// } from 'react-leaflet';
 import {
   Map, TileLayer, Marker, Popup,
 } from 'react-leaflet';
@@ -74,10 +71,11 @@ function MapView(props) {
   <Map center={mapCenter}
           zoom={6}>
   <TileLayer attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+             url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png"
               />
       {markerElements}
   </Map>
+
       </div>
   );
 }
