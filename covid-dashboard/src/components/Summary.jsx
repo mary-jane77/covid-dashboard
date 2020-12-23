@@ -5,8 +5,17 @@ const totalKeyArray = ['confirmed'];
 function Summary(props) {
   const {
     locationArray,
+    selectedLocation,
+    onSelectItem,
+    onDeselectItem,
     loading,
   } = props;
+
+  function onClickItem(id) {
+    if (selectedLocation === null) onSelectItem(id);
+    else if (selectedLocation.id !== id) onSelectItem(id);
+    else onDeselectItem();
+  }
 
   const totalElements = totalKeyArray.map((key) => {
     const sum = locationArray.reduce((total, location) => total + location.latest[key], 0);
@@ -21,15 +30,23 @@ function Summary(props) {
       </div>
     );
   });
+
   const locationElements = locationArray.map((location) => {
     const {
       id, country_code: countryCode,
       country, province,
       latest: { confirmed },
     } = location;
+
     let title = country;
     if (province !== '' && province !== country) {
       title = `${province}, ${country}`;
+    }
+    let locationClass = 'list-view-location';
+    if (selectedLocation !== null) {
+      if (location.id === selectedLocation.id) {
+        locationClass += ' selected';
+      }
     }
     let flag = countryCode;
     if (countryCode !== '') {
@@ -37,7 +54,7 @@ function Summary(props) {
     }
 
     return (
-      <div key={`${id}-${countryCode}`}>
+      <div key={`${id}-${countryCode}`} className={locationClass} onClick={() => onClickItem(id)}>
         <div className="table">
           <tr>
             <td>{flag}</td>

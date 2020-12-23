@@ -48,16 +48,15 @@
   }
 
   &:hover {
-    background-color: #eeeeee;
+    background-color: black;
   }
 
   &.selected {
-    color: white;
-    background-color: red;
+    background-color: #BDBDBD;
   }
 
   &.selected .title {
-    color: white;
+    color: red;
   }
 }
 
@@ -100,4 +99,83 @@
 .fetch-message {
   color: #bdbdbd;
   font-size: 28px;
+}
+
+//marker
+.marker-icon {
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 50%;
+}
+
+.marker-icon.pink {
+    background-color: rgba(245, 21, 245, 0.5);
+    border-color: rgb(245, 21, 245);
+}
+
+.marker-icon.purple {
+    background-color: rgba(119, 5, 213, 0.5);
+    border-color: rgb(119, 5, 213);
+}
+
+.marker-icon.red {
+    background-color: rgba(224, 7, 7, 0.5);
+    border-color: rgb(224, 7, 7);
+}
+
+//detatils
+.details-view {
+    background-color: white;
+    position: absolute;
+    box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.15);
+    width: 220px;
+    padding: 20px;
+    left: 50%;
+    z-index: 520;
+    transform: translateX(-50%);
+    margin-top: -520px;
+    border-radius: 20px;
+    // margin-left: 500px;
+}
+
+ .title-details{
+  font-size: 18px;
+}
+
+.details-view-content{
+    width: 200px;
+    height: 120px;
+}
+.details-view-close {
+    font-size: 32px;
+    line-height: 0.8;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 22;
+    cursor: pointer;
+}
+
+.table2{
+  color:#222222;
+  font-size: 25px;
+}
+.tr_table{
+  display: flex;
+  justify-content: space-between;
+  align-items: center
+}
+.td_col{
+  margin-top: -30px;
+  line-height: 0px;
+}
+.td_count{
+ font-size: 20px;
+ font-weight: bold;
+ color:#DD0201 ;
+}
+.title_details{
+ color:#BDBDBD;
+ margin-top: -10px;
+ font-size: 18px;
 }

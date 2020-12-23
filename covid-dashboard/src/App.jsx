@@ -116,10 +116,6 @@ const filterChartData = () => {
         <h1>COVID-19 Dashboard</h1>
       </header>
 
-    {/* <div className="app__header">
-    <h1>COVID-19 Dashboard</h1>
-   </div> */}
-
           <Summary
         locationArray={locationArray}
         loading={loading}
@@ -135,6 +131,7 @@ const filterChartData = () => {
       onSelectMarker={onSelectLocation} />
       {detailsView}
  </div>
+
       {/* <header className="App-header">
         <h1>COVID-19 Dashboard</h1>
       </header> */}
@@ -163,10 +160,7 @@ const filterChartData = () => {
       />}
  {info && <Table1p2 info={findCountryInfo(info, countryData)} />}
       <Footer/>
-
-  {/* </div> */}
- </div>
-
+    </div>
   );
 }
 export default App;
