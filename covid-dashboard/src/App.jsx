@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import MapView from './components/Map/MapView';
 import 'leaflet/dist/leaflet.css';
-import './Css/App.scss';
+import './Css/List.scss';
 import axios from './axios';
 import Summary from './components/Summary.jsx';
 import DetailsView from './components/Map/DetailsView.jsx';
@@ -12,7 +12,7 @@ import Table1 from './components/table1.jsx';
 import Table1p2 from './components/table1p2.jsx';
 import useFetch from './components/getInfo.jsx';
 import './Css/App.scss';
-import './App.css';
+// import './App.css';
 
 
 import {
