@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import MapView from './components/Map/MapView';
 import 'leaflet/dist/leaflet.css';
-import './CSS/App.scss';
+import './Css/App.scss';
 import axios from './axios';
 import Summary from './components/Summary.jsx';
 import DetailsView from './components/Map/DetailsView.jsx';
