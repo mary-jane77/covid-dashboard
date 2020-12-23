@@ -1,6 +1,3 @@
-// @import './Vars';
- //@import '~bulma/bulma.sass';
-
 
 // List view
 .list-view {
@@ -101,4 +98,8 @@
 .table td {
   padding: 0.5rem;
   border: none;
+}
+.fetch-message{
+   color:#BDBDBD;
+   font-size: 28px;
 }

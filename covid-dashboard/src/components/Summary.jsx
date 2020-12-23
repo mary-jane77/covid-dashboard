@@ -9,8 +9,7 @@ function Summary(props) {
   } = props;
 
   const totalElements = totalKeyArray.map((key) => {
-    // eslint-disable-next-line no-shadow
-    const sum = locationArray.reduce((sum, location) => sum + location.latest[key], 0);
+    const sum = locationArray.reduce((total, location) => total + location.latest[key], 0);
     return (
             <div key={key} className="columns">
                 <div className="column">
