@@ -102,10 +102,6 @@ function App() {
   }, []);
   // console.log(locationArray);
 
-  if (loading) {
-    return <p> Fetching!!! </p>;
-  }
-
   let detailsView = null;
   if (selectedLocation != null) {
     detailsView = <DetailsView location={selectedLocation} onClickClose={onDeselectLocation} />;
@@ -140,12 +136,12 @@ function App() {
     <div className="app__left">
 
     <div className="app__header">
-    <h1>COVID-19 Dashboard by the Center for Systems Science and Engineering
-        (CSSE) at Johns Hopkins University (JHU)</h1>
+    <h1>COVID-19 Dashboard</h1>
    </div>
 
           <Summary
         locationArray={locationArray}
+        loading={loading}
         selectedLocation={selectedLocation}
         onSelectItem={onSelectLocation}
         onDeselectItem={onDeselectLocation}
