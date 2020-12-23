@@ -110,7 +110,6 @@ function App() {
         numeration={numeration}
       />}
       <Footer/>
-      {info && <Table1p2 info={findCountryInfo(info, countryData)} />}
 
       <Summary
      locationArray={locationArray}
