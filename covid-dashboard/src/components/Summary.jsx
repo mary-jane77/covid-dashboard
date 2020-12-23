@@ -11,14 +11,14 @@ function Summary(props) {
   const totalElements = totalKeyArray.map((key) => {
     const sum = locationArray.reduce((total, location) => total + location.latest[key], 0);
     return (
-            <div key={key} className="columns">
-                <div className="column">
-                    <h6 className="title is-6">{key}</h6>
-                </div>
-                <div className="column">
-                    <p className="is-6 has-text-right">{sum}</p>
-                </div>
-            </div>
+      <div key={key} className="columns">
+        <div className="column">
+          <h6 className="title is-6">{key}</h6>
+        </div>
+        <div className="column">
+          <p className="is-6 has-text-right">{sum}</p>
+        </div>
+      </div>
     );
   });
   const locationElements = locationArray.map((location) => {
@@ -37,36 +37,36 @@ function Summary(props) {
     }
 
     return (
-            <div key={`${id}-${countryCode}`}>
-                <div className="table">
-                    <tr>
-                      <td>{flag}</td>
-                        <td className="title is-7">{title}</td>
-                        <td>{confirmed}</td>
-                    </tr>
-                </div>
-            </div>
+      <div key={`${id}-${countryCode}`}>
+        <div className="table">
+          <tr>
+            <td>{flag}</td>
+            <td className="title is-7">{title}</td>
+            <td>{confirmed}</td>
+          </tr>
+        </div>
+      </div>
     );
   });
 
   return (
-   <div className="list-view">
-{
-     loading
-       ? <p className='fetch-message'>Fetching!</p>
-       : (
-<>
-<div className="list-view-total">
-        <h2 className="title is-4">Clobal Cases</h2>
-              {totalElements}
-          </div>
-          <div className="list-view-locations">
-              {locationElements}
-        </div>
-</>
-       )
-}
-      </div>
+    <div className="list-view">
+      {
+        loading
+          ? <p className='fetch-message'>Fetching!</p>
+          : (
+            <>
+              <div className="list-view-total">
+                <h2 className="title is-4">Clobal Cases</h2>
+                {totalElements}
+              </div>
+              <div className="list-view-locations">
+                {locationElements}
+              </div>
+            </>
+          )
+      }
+    </div>
   );
 }
 
