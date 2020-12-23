@@ -1,16 +1,17 @@
 .map {
-  height: 785px;
+  height: 700px;
   background-color:  #222222;
   padding: 0.5rem;
-  /* border-radius: 20px; */
-  margin-top: -10px;
-  margin-right: 320px;
+   width: 800px;
+   margin-top: 807px;
+    margin-left: 100px;
   box-shadow: 0 0 8px -4px rgba(0, 0, 0, 0.5);
   z-index: 10;
 }
 
 .cards_map{
-margin-left: 230px;
+  margin-left: 144px;
+  margin-bottom: 90px;
 }
 
 .map .leaflet-container {

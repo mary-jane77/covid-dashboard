@@ -1,3 +1,5 @@
+/* eslint-disable */
+/* eslint-disable max-len */
 import React, { useState, useEffect, useCallback } from 'react';
 import MapView from './components/Map/MapView';
 import 'leaflet/dist/leaflet.css';
@@ -6,14 +8,11 @@ import axios from './axios';
 import Summary from './components/Summary.jsx';
 import DetailsView from './components/Map/DetailsView.jsx';
 import './components/Map.css';
-/* eslint-disable linebreak-style */
 import './App.scss';
 import Table1 from './components/table1.jsx';
 import Table1p2 from './components/table1p2.jsx';
 import useFetch from './components/getInfo.jsx';
-import './Css/App.scss';
-// import './App.css';
-
+import './App.css';
 
 import {
   filterInfo,
@@ -51,6 +50,24 @@ function App() {
     setNumeration(n);
   };
 
+const filterChartData = () => {
+    if (displayingCountryData) {
+      return getCountryChartInfo(OneCountryChartInfo,
+        period,
+        status,
+        numeration,
+        population[0].population);
+    }
+    return getWorldChartInfo(WorldChartInfo, period, status, numeration);
+  };
+
+  const filterData = () => filterInfo(info, period, status);
+  const findCountry = (country) => {
+    setCountry(country);
+    setChartCountry(country);
+    setdisplayingCountryData(true);
+  };
+
   function sortedLocationArray(locations) {
     // eslint-disable-next-line max-len
     return [...locations].sort((location1, location2) => location2.latest.confirmed - location1.latest.confirmed);
@@ -65,22 +82,7 @@ function App() {
     const { coordinates: { latitude, longitude } } = location;
     setMapCenter([latitude, longitude]);
   }, [locationArray]);
-  const filterChartData = () => {
-    if (displayingCountryData) {
-      return getCountryChartInfo(OneCountryChartInfo,
-        period,
-        status,
-        numeration,
-        population[0].population);
-    }
-    return getWorldChartInfo(WorldChartInfo, period, status, numeration);
-  };
-  const filterData = () => filterInfo(info, period, status);
-  const findCountry = (country) => {
-    setCountry(country);
-    setChartCountry(country);
-    setdisplayingCountryData(true);
-  };
+
 
   const onDeselectLocation = useCallback(() => {
     setSelectedLocation(null);
@@ -100,44 +102,19 @@ function App() {
         console.log(error);
       });
   }, []);
-  // console.log(locationArray);
 
   let detailsView = null;
   if (selectedLocation != null) {
     detailsView = <DetailsView location={selectedLocation} onClickClose={onDeselectLocation} />;
   }
-  const [locationArray, setLocationArray] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  function sortedLocationArray(locations) {
-    // eslint-disable-next-line max-len
-    return [...locations].sort((location1, location2) => location2.latest.confirmed - location1.latest.confirmed);
-  }
-  useEffect(() => {
-    setLoading(true);
-    axios.get('/v2/locations').then((res) => {
-      const sortedLocations = sortedLocationArray(res.data.locations);
-      setLoading(false);
-
-      if (res.status === 200) {
-        setLocationArray(sortedLocations);
-      }
-    })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-  // console.log(locationArray);
-
   return (
 
     <div className="App">
 
-    <div className="app__left">
-
-    <div className="app__header">
-    <h1>COVID-19 Dashboard</h1>
-   </div>
+    {/* <div className="app__left"> */}
+ <header className="App-header">
+        <h1>COVID-19 Dashboard</h1>
+      </header>
 
           <Summary
         locationArray={locationArray}
@@ -153,9 +130,11 @@ function App() {
       mapCenter={mapCenter}
       onSelectMarker={onSelectLocation} />
       {detailsView}
-      <header className="App-header">
+ </div>
+
+      {/* <header className="App-header">
         <h1>COVID-19 Dashboard</h1>
-      </header>
+      </header> */}
       {(info && WorldChartInfo) && <Table1
         changeCondition={changeConditionfromTable}
         filterData={filterData}
@@ -179,17 +158,9 @@ function App() {
         period={period}
         numeration={numeration}
       />}
+ {info && <Table1p2 info={findCountryInfo(info, countryData)} />}
       <Footer/>
-
-      <Summary
-     locationArray={locationArray}
-     loading={loading} />
-
     </div>
-
-       </div>
- </div>
-
   );
 }
 export default App;
