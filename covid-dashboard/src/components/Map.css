@@ -1,0 +1,21 @@
+.map {
+  position: relative;
+  position: absolute;
+  height: 50vh;
+  background-color:  #222222;
+  margin: auto 0;
+  padding: 0.5rem;
+   width: 40vw;
+  box-shadow: 0 0 8px -4px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+/* .cards_map{
+  margin-left: 144px;
+  margin-bottom: 90px;
+} */
+
+.map .leaflet-container {
+  height: 100%;
+  border-radius: 12px;
+}

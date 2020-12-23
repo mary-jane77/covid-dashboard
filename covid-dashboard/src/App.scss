@@ -1,0 +1,110 @@
+@import './styles/vars';
+
+.App {
+  display: grid;
+  grid-template-columns: repeat(2, auto) 200px 200px;
+  grid-template-rows: 8vh repeat(2, auto) 6vh;
+  grid-template-areas:
+    "h h h h"
+    "total t3 t1 t1p2"
+    "t2 t3 t4 t4"
+    "f f f f";
+  column-gap: 5px;
+  row-gap: 5px;
+  text-align: center;
+  background-color: $background;
+  min-height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
+  place-items: center;
+  padding: 10px;
+}
+
+button {
+  background: none;
+  border: none;
+}
+
+button:focus,
+    button:active {
+      background: none;
+      outline: none;
+    }
+
+.list-view {
+  grid-area: t2;
+  margin: 16vh 0;
+}
+
+.main-table-p1 {
+  grid-area: t1;
+}
+.clone {
+  grid-area: t1p2;
+}
+.chart {
+  grid-area: t4;
+}
+.footer {
+  grid-area: f;
+}
+.map {
+  grid-area: t3;
+  margin: 18vh auto;
+  margin-left: 9vw;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  position: fixed;
+  background-color: $table;
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: white;
+  border-bottom: 1px solid #5a5a5a;
+}
+
+.zoom-btn {
+  width: 10px;
+  height: 10px;
+  z-index: 21;
+  display: none;
+  position: absolute;
+  top: -7px;
+  left: -7px;
+  .zoom-out {
+    font-size: 16px;
+    position: absolute;
+    top: -7px;
+    left: -7px;
+    background-color: $table;
+    border-radius: 50px;
+    padding: 3px;
+    margin: 0;
+    border: 1px solid rgb(151, 150, 150);
+    transition: all 0.7s ease;
+    &:hover {
+      transform: scale(1.05);
+      background-color: rgba(151, 150, 150, 0.76);
+    }
+  }
+}
+
