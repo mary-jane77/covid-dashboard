@@ -7,11 +7,11 @@ const Table1p2 = (props) => (
   }} onMouseOut={() => {
     document.querySelector('.clone .zoom-btn').style.display = 'none';
   }}>
-  <button className="zoom-btn">
-        <span className="zoom-out material-icons ">
-          zoom_out_map
+    <button className="zoom-btn">
+      <span className="zoom-out material-icons ">
+        zoom_out_map
     </span>
-      </button>
+    </button>
     <div className="table1-content-wrapper">
       <header >
         <h2>{props.info.country}</h2>

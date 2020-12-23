@@ -27,11 +27,11 @@ const Table1 = (props) => {
     }} onMouseOut={() => {
       document.querySelector('.table1 .zoom-btn').style.display = 'none';
     }}>
-    <button className="zoom-btn zoom-btn1">
-          <span className="zoom-out material-icons ">
-            zoom_out_map
+      <button className="zoom-btn zoom-btn1">
+        <span className="zoom-out material-icons ">
+          zoom_out_map
       </span>
-        </button>
+      </button>
       <footer>
         <button className="arrow" onClick={() => {
           const newPeriod = period === 0 ? 1 : 0;

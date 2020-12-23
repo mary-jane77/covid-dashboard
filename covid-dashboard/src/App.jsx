@@ -1,8 +1,14 @@
+/* eslint-disable linebreak-style */
+import React, { useState, useEffect } from 'react';
 import './App.scss';
-import React, { useState } from 'react';
 import Table1 from './components/table1.jsx';
 import Table1p2 from './components/table1p2.jsx';
 import useFetch from './components/getInfo.jsx';
+import './Css/App.scss';
+import './App.css';
+import axios from './axios';
+import Summary from './components/Summary.jsx';
+
 import {
   filterInfo,
   periodInfo,
@@ -51,10 +57,34 @@ function App() {
     setChartCountry(country);
     setdisplayingCountryData(true);
   };
+
+  const [locationArray, setLocationArray] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  function sortedLocationArray(locations) {
+    // eslint-disable-next-line max-len
+    return [...locations].sort((location1, location2) => location2.latest.confirmed - location1.latest.confirmed);
+  }
+  useEffect(() => {
+    setLoading(true);
+    axios.get('/v2/locations').then((res) => {
+      const sortedLocations = sortedLocationArray(res.data.locations);
+      setLoading(false);
+
+      if (res.status === 200) {
+        setLocationArray(sortedLocations);
+      }
+    })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+  // console.log(locationArray);
+
   return (
     <div className="App">
       <header className="App-header">
-        COVID-19 Dashboard
+        <h1>COVID-19 Dashboard</h1>
       </header>
       {(info && WorldChartInfo) && <Table1
         changeCondition={changeConditionfromTable}
@@ -80,8 +110,13 @@ function App() {
         numeration={numeration}
       />}
       <Footer/>
+      {info && <Table1p2 info={findCountryInfo(info, countryData)} />}
+
+      <Summary
+     locationArray={locationArray}
+     loading={loading} />
+
     </div>
   );
 }
-
 export default App;
