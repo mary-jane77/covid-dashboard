@@ -31,6 +31,11 @@ button:focus,
       outline: none;
     }
 
+.list-view {
+  grid-area: t2;
+  margin: 16vh 0;
+}
+
 .main-table-p1 {
   grid-area: t1;
 }
@@ -43,6 +48,12 @@ button:focus,
 .footer {
   grid-area: f;
 }
+.map {
+  grid-area: t3;
+  margin: 18vh auto;
+  margin-left: 9vw;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -61,12 +72,12 @@ button:focus,
   position: fixed;
   background-color: $table;
   width: 100%;
-  min-height: 10vh;
+  height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 16px;
   color: white;
   border-bottom: 1px solid #5a5a5a;
 }
