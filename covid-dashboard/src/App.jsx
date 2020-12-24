@@ -12,7 +12,6 @@ import './App.scss';
 import Table1 from './components/table1.jsx';
 import Table1p2 from './components/table1p2.jsx';
 import useFetch from './components/getInfo.jsx';
-// import './App.css';
 
 import {
   filterInfo,
@@ -111,7 +110,6 @@ const filterChartData = () => {
 
     <div className="App">
 
-    {/* <div className="app__left"> */}
  <header className="App-header">
         <h1>COVID-19 Dashboard</h1>
       </header>
@@ -132,9 +130,6 @@ const filterChartData = () => {
       {detailsView}
  </div>
 
-      {/* <header className="App-header">
-        <h1>COVID-19 Dashboard</h1>
-      </header> */}
       {(info && WorldChartInfo) && <Table1
         changeCondition={changeConditionfromTable}
         filterData={filterData}
