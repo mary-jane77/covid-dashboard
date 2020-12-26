@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import MapView from './components/Map/MapView';
 import 'leaflet/dist/leaflet.css';
-import './Css/List.scss';
+import './CSS/List.scss';
 import axios from './axios';
 import Summary from './components/Summary.jsx';
 import DetailsView from './components/Map/DetailsView.jsx';
